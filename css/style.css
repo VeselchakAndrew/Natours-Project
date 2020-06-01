@@ -20,11 +20,7 @@ body {
 	line-height: 1.7;
 	color: #777;
 	padding: 1.875rem;
-	--image_cover: linear-gradient(
-		to right,
-		rgba(126, 213, 111, 0.8),
-		rgba(40, 180, 131, 0.6)
-	);
+	--image_cover: linear-gradient(to right, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.6));
 }
 
 .header {
@@ -34,9 +30,9 @@ body {
 	background-size: cover;
 	background-position: center 20%;
 	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    position: relative;
-    justify-content: center;
-    align-items: center;
+	position: relative;
+	justify-content: center;
+	align-items: center;
 }
 
 @media screen and (max-width: 1300px) {
@@ -56,23 +52,130 @@ body {
 }
 
 .text-box {
-   
-    
+	text-align: center;
 }
 
 .heading-primary {
 	color: #fff;
 	text-transform: uppercase;
 	text-align: center;
+	backface-visibility: hidden;
+	margin-bottom: 60px;
 }
 .heading-primary-main {
 	display: block;
 	font-weight: 400;
 	font-size: 3.75rem;
 	letter-spacing: 1rem;
+	animation: moveInLeft;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
 }
 .heading-primary-sub {
 	display: block;
 	font-size: 1.25rem;
 	letter-spacing: 0.67rem;
+	animation: moveInRight;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+
+	80% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+
+	80% {
+		transform: translateX(-10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+.btn:link,
+.btn:visited {
+	position: relative;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 15px 40px;
+	border-radius: 100px;
+	display: inline-block;
+	transition: all 0.2s;
+}
+
+.btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	background-color: #fff;
+	color: #777;
+}
+
+.btn::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	z-index: -1;
+	transition: all 0.4s;
+}
+
+.btn-white::after {
+	background-color: #fff;
+}
+
+.btn:hover::after {
+	transform: scale(1.2);
+	opacity: 0;
+}
+
+.btn-animated {
+	animation: moveInBottom;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-delay: 0.5s;
+	animation-fill-mode: backwards;
 }
